@@ -1929,7 +1929,7 @@ RunService.RenderStepped:Connect(function()
                 delay(5, function()
                     if (Character.HumanoidRootPart.Position - GetATM().MainPart.Position).Magnitude < 5 then
                         Storage.Events.ATM:InvokeServer("DP", Storage.PlayerbaseData2[Client.Name].Cash.Value, GetATM().MainPart)
-                        CurrentTarget = =nil
+                        CurrentTarget = nil
                     end
 
                     CanFarmHalal = true
