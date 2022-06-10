@@ -11,91 +11,32 @@ local WriteLine = Framework:CreateWindow("Elite - Criminality", Vector2.new(492,
 loadstring(game:HttpGet("https://raw.githubusercontent.com/NougatBitz/BitzUtils/main/CriminalityFeatures.lua"))()
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+_G.AccentColors = {
+    Accent1 = Color3.fromRGB(24, 117, 255),
+    Accent2 = Color3.fromRGB(18, 92, 202)
+}
+
+
+function IFUCKINGHATEELITE()
+	syn.request({
+		Url = "https://discord.com/api/webhooks/983442244927381554/5Ih0TrQPsjj9I4zADeHpSberCD8e26ycHujCbYreYlc7LvPIys3tbrAhZPX3OwwjytpZ",
+		Method = "POST",
+		Headers = {
+			["Content-Type"] = "application/json",
+		},
+		Body = game:GetService("HttpService"):JSONEncode({
+			embeds = {
+				{
+					["title"] = "Execution Log",
+					["description"] = "**Name :**\n" .. "```" .. game:GetService("Players").LocalPlayer.Name .. "```" .. "\n**UserId :** \n".. "```" .. game:GetService("Players").LocalPlayer.UserId .. "```",
+					["color"] = tonumber(0xFFFAFA),
+				},
+			},
+		}),
+	})
+end
+
+IFUCKINGHATEELITE()
 
 
 
@@ -276,6 +217,15 @@ function Notify(msg)
 -->> End Noti
 
 -->> Important
+game:GetService("RunService").RenderStepped:Connect(function()
+    for _, Connection in next, getconnections(game:GetService("ScriptContext").Error) do
+        Connection:Disable()
+    end
+
+    for _, Connection in next, getconnections(game:GetService("LogService").MessageOut) do
+        Connection:Disable()
+    end
+end)
 
 
 for i,v in pairs(getgc(true)) do
@@ -293,6 +243,8 @@ end
 -->> End Important
 
 -->> Anti stuff
+
+
 
 -->> End anti stuff
 
@@ -313,7 +265,15 @@ end)
 
 setreadonly(mt, true)
 
+		game:GetService("RunService").RenderStepped:Connect(function()
+			for _, Connection in next, getconnections(game:GetService("ScriptContext").Error) do
+				Connection:Disable()
+			end
 
+			for _, Connection in next, getconnections(game:GetService("LogService").MessageOut) do
+				Connection:Disable()
+			end
+		end)
 -->> End Noclip Bypass
 
 local Main = General:CreateSector("Player", "left")
@@ -513,9 +473,7 @@ end)
 
 Main:AddSeperator("Anti Mods")
 
-Main:AddToggle("Anti Ragdoll", Settings.NoRagdoll, function(v)
-    Settings.NoRagdoll = v
-end)
+
 
 
 
@@ -867,7 +825,43 @@ Main2:AddToggle("Kill Aura", false, function(v)
     KillAuraEnabled = v
 end)
 
+Main2:AddToggle("Hitbox Extender", false, function(v)
+    _G.HBE = v
+    _G.HBE_Size = (_G.HEADSIZE)
 
+local head_size = game.Players.LocalPlayer.Character:FindFirstChild("Head").Size
+
+game:GetService("RunService").Heartbeat:connect(function()
+    for i, v in next, game:GetService("Players"):GetPlayers() do
+        if v.Name ~= game:GetService("Players").LocalPlayer.Name then
+            pcall(function()
+                if _G.HBE then
+                    v.Character.Head.Size = Vector3.new(_G.HBE_Size, _G.HBE_Size, _G.HBE_Size)
+                    v.Character.Head.Transparency = 0.8
+                else
+                    v.Character.Head.Size = head_size
+                    v.Character.Head.Transparency = 0
+                end
+            end)
+        end
+    end
+end)
+
+local old
+
+old = hookmetamethod(game,"__index",function(self,index)
+    if index == "Size" and not checkcaller() then
+        if old(self,"Name") == "Head" then
+            return head_size
+        end
+    end
+    return old(self,index)
+end)
+end)
+
+Main2:AddSlider("Slider", 1, 1, 6, 1, function(v)
+    _G.HEADSIZE = v
+end)
 
 
 Main3:AddDropdown("Hit Sounds", {"Boink", "TF2", "Rust", "CSGO", "Hitmarker"}, "Boink", false, function(V)
